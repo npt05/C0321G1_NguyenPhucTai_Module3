@@ -12,8 +12,8 @@ oDate date,
 oTotalPrice integer
 );
 create table OrderDetail(
-oID int not null,
-pID int not null,
+oID int auto_increment,
+pID int auto_increment,
 primary key(oID,pID),
 foreign key(oID) references Orders(oID),
 foreign key(pID) references Product(pID),
