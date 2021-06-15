@@ -1,11 +1,11 @@
 create database student_management;
 create table Class(
-ID int,
-Name varchar(45)
+Class_ID int,
+Class_Name varchar(45)
 );
 create table Teacher(
-id int,
+Teacher_ID int,
 Name varchar(45),
-Age int,
-Country varchar(45)
+Teacher_Age int,
+Teacher_Country varchar(45)
 );
