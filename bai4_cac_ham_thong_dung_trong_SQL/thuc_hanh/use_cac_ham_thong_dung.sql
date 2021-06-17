@@ -1,53 +1,53 @@
 CREATE DATABASE QuanLySinhVien;
 USE QuanLySinhVien;
-CREATE TABLE Class
+CREATE TABLE class
 (
-    ClassID   INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    ClassName VARCHAR(60) NOT NULL,
-    StartDate DATETIME    NOT NULL,
+    class_Id   INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    class_name VARCHAR(60) NOT NULL,
+    start_date DATETIME    NOT NULL,
     Status    BIT
 );
-CREATE TABLE Student
+CREATE TABLE student
 (
-    StudentId   INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    StudentName VARCHAR(30) NOT NULL,
-    Address     VARCHAR(50),
-    Phone       VARCHAR(20),
+    student_Id   INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    student_name VARCHAR(30) NOT NULL,
+    address     VARCHAR(50),
+    phone       VARCHAR(20),
     Status      BIT,
-    ClassId     INT         NOT NULL,
-    FOREIGN KEY (ClassId) REFERENCES Class (ClassID)
+    class_Id     INT         NOT NULL,
+    FOREIGN KEY (class_Id) REFERENCES class (class_Id)
 );
-CREATE TABLE Subject
+CREATE TABLE subject
 (
-    SubId   INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    SubName VARCHAR(30) NOT NULL,
-    Credit  TINYINT     NOT NULL DEFAULT 1 CHECK ( Credit >= 1 ),
+    sub_Id   INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    sub_name VARCHAR(30) NOT NULL,
+    credit  TINYINT     NOT NULL DEFAULT 1 CHECK ( credit >= 1 ),
     Status  BIT                  DEFAULT 1
 );
-CREATE TABLE Mark
+CREATE TABLE mark
 (
-    MarkId    INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    SubId     INT NOT NULL,
-    StudentId INT NOT NULL,
-    Mark      FLOAT   DEFAULT 0 CHECK ( Mark BETWEEN 0 AND 100),
-    ExamTimes TINYINT DEFAULT 1,
-    UNIQUE (SubId, StudentId),
-    FOREIGN KEY (SubId) REFERENCES Subject (SubId),
-    FOREIGN KEY (StudentId) REFERENCES Student (StudentId)
+    mark_Id    INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    sub_Id     INT NOT NULL,
+    student_Id INT NOT NULL,
+    mark      FLOAT   DEFAULT 0 CHECK ( mark BETWEEN 0 AND 100),
+    exam_times TINYINT DEFAULT 1,
+    UNIQUE (sub_Id, student_Id),
+    FOREIGN KEY (sub_Id) REFERENCES subject (sub_Id),
+    FOREIGN KEY (student_Id) REFERENCES student (student_Id)
 );
 
-INSERT INTO Class
+INSERT INTO class
 VALUES (1, 'A1', '2008-12-20', 1);
-INSERT INTO Class
+INSERT INTO class
 VALUES (2, 'A2', '2008-12-22', 1);
-INSERT INTO Class
+INSERT INTO class
 VALUES (3, 'B3', current_date, 0);
 
-INSERT INTO Student (Student_Name, Address, Phone, Status, Class_ID)
+INSERT INTO student (student_name, address, phone, Status, class_Id)
 VALUES ('Hung', 'Ha Noi', '0912113113', 1, 1);
-INSERT INTO Student (Student_Name, Address, Status, Class_ID)
+INSERT INTO student (student_name, address, Status, class_Id)
 VALUES ('Hoa', 'Hai phong', 1, 1);
-INSERT INTO Student (Student_Name, Address, Phone, Status, Class_ID)
+INSERT INTO student (student_name, address, phone, Status, class_Id)
 VALUES ('Manh', 'HCM', '0123123123', 0, 2);
 
 INSERT INTO Subject
@@ -56,22 +56,22 @@ VALUES (1, 'CF', 5, 1),
        (3, 'HDJ', 5, 1),
        (4, 'RDBMS', 10, 1);
 
-INSERT INTO Mark (Sub_ID, Student_ID, Mark, ExamTimes)
+INSERT INTO mark (sub_Id, student_Is, mark, exam_times)
 VALUES (1, 1, 8, 1),
        (1, 2, 10, 2),
        (2, 1, 12, 1);   
 
-SELECT Address, COUNT(StudentId) AS 'Số lượng học viên'
-FROM Student
-GROUP BY Address;
+SELECT address, COUNT(student_Id) AS 'Số lượng học viên'
+FROM student
+GROUP BY address;
 
-SELECT S.StudentId,S.StudentName, AVG(Mark)
-FROM Student S join Mark M on S.StudentId = M.StudentId
-GROUP BY S.StudentId, S.StudentName
-HAVING AVG(Mark) > 15;
+SELECT s.student_Id,s.student_name, AVG(mark)
+FROM student s join mark m on s.student_Id = m.student_Id
+GROUP BY s.student_Id, s.student_name
+HAVING AVG(mark) > 15;
 
-SELECT S.StudentId, S.StudentName, AVG(Mark)
-FROM Student S join Mark M on S.StudentId = M.StudentId
-GROUP BY S.StudentId, S.StudentName
-HAVING AVG(Mark) >= ALL (SELECT AVG(Mark) FROM Mark GROUP BY Mark.StudentId);
+SELECT s.student_Id, s.student_name, AVG(mark)
+FROM student s join mark m on s.student_Id = m.student_Id
+GROUP BY s.student_Id, s.student_name
+HAVING AVG(mark) >= ALL (SELECT AVG(mark) FROM mark GROUP BY mark.student_Id);
 

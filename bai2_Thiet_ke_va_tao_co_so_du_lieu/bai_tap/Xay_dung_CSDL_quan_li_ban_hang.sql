@@ -1,29 +1,29 @@
 create database QuanLyBanHang;
 use QuanLyBanHang;
 
-create table Customers(
-Customers_ID int auto_increment primary key,
-Customers_Name varchar(255),
-Customers_Age int
+create table customers(
+customers_Id int auto_increment primary key,
+customers_name varchar(255),
+customers_age int
 );
-create table Orders(
-Orders_ID int auto_increment primary key,
-Customers_ID int, foreign key(Customers_ID) references Customers(Customers_ID),
-Orders_Date date,
-Orders_TotalPrice integer
+create table orders(
+orders_Id int auto_increment primary key,
+customers_Id int, foreign key(customers_Id) references customers(customers_Id),
+orders_date date,
+orders_total_price integer
 );
-create table OrderDetail(
-Orders_ID int,
-Product_ID int,
-primary key(Orders_ID,Product_ID),
-foreign key(Orders_ID) references Orders(Orders_ID),
-foreign key(Product_ID) references Product(Product_ID),
-OrderDetail_QTY char
+create table order_detail(
+orders_Id int,
+product_Id int,
+primary key(orders_Id,product_Id),
+foreign key(orders_Id) references orders(orders_Id),
+foreign key(product_Id) references oroduct(product_Id),
+order_detail_QTY char
 );
-create table Product(
-Product_ID int auto_increment primary key,
-Product_Name varchar(255),
-Product_Price integer
+create table product(
+product_Id int auto_increment primary key,
+product_name varchar(255),
+product_price integer
 );
 
 
