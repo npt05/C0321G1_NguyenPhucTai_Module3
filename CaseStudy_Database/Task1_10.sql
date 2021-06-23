@@ -27,16 +27,16 @@ values
 
 insert into nhan_vien
 values
-(1,'Hoàng Văn Long',3,3,1,2000-08-15,562978139,55000000,0771269728,'vanlong@gmail.com','Đà Nẵng'),
-(2,'Nguyễn Văn Tuấn',2,3,2,1999-10-22,162497862,3000000,0882664958,'tuannguyen@gmail.com','Quảng Bình'),
-(3,'Bùi Thi Phương Linh',1,1,1,2001-04-27,319862498,7000000,0773195269,'phuonglinh@gmail.com','Huế'),
-(4,'Trương Thị Liên Giang',2,3,4,2001-01-18,890136498,30000000,09812657890,'gianglien@gmail.com','Đà Nẵng'),
-(5,'Trương Diệu Chi',1,3,1,2001-03-05,231562978,10000000,0891236589,'chidieu@gmail.com','Hồ Chí Minh'),
-(6,'Dương Thị Hải Yến',3,2,2,2000-11-27,361297268,22000000,0986213495,'haiyen@gmail.com','Hà Nội'),
-(7,'Nguyễn Ngọc Tiến',5,3,3,1999-04-07,560123987,40000000,0889312654,'nguyenngoc@gmail.com','Quãng Ngãi'),
-(8,'Trần Thị Kim Anh',5,4,1,2001-04-16,803129456,45000000,0772986125,'anhkim@gmail.com','Quảng Bình'),
-(9,'Võ Văn Chiến',6,4,4,1998-12-08,546987235,35000000,0893645128,'vanchien@gmail.com','Đà Nẵng'),
-(10,'Nguyễn Văn Cường',5,1,4,1997-08-10,245698709,45000000,0773126549,'vancuong@gmail.com','Quảng Nam');
+(1,'Hoàng văn Long',6,4,2,'1978-02-12',206184291,50000000,0905345432,'long@gmail.com','Đà Nẵng'),
+(2,'Nguyễn Văn Sơn',1,1,1,'1999-12-12',206764234,5000000,090534345,'nguyenson@gmail.com','Đà Nẵng'),
+(3,'Nguyễn Văn An',1,1,3,'1988-04-13',206184291,5000000,0905768796,'vanan@gmail.com','Quảng Nam'),
+(4,'Lê Thị Thu',2,3,4,'1995-02-12',206184291,10000000,0905453657,'lethu@gmail.com','Đà Nẵng'),
+(5,'Trương Văn Tuấn',2,3,1,'1989-02-09',206915647,10000000,0909452456,'vantuan@gmail.com','Hồ Chí Minh'),
+(6,'Trương Diệu Chi',3,3,2,'1991-12-17',202914563,20000000,0905567345,'chidieu@gmail.com','Hà Nội'),
+(7,'Nguyễn Ngọc',3,3,1,'1988-02-12',206566914,20000000,09055467846,'nguyenngoc@gmail.com','Hai Phòng'),
+(8,'La Thành',4,4,4,'1978-02-12',206184291,50000000,0905345432,'khue@gmail.com','Đà Nẵng'),
+(9,'Võ Văn Chiến',6,4,2,'1978-02-18',20657478,30000000,0935678567,'vanchien@gmail.com','Đà Nẵng'),
+(10,'Võ Anh Dũng',5,4,1,'1990-02-12',20656465,40000000,0905345768,'voanh@gmail.com','Quảng Nam');
 
 insert into loai_khach
 values
@@ -48,11 +48,11 @@ values
 
 insert into khach_hang
 values
-(1,2,'Nguyễn Tuấn',1989-02-09,'234345345','090543454','tuannguyen@gmail.com','Quang Nam'),
-(2,3,'Hoàng Anh',1991-12-17,'223445398','095643457','hoanganh@gmail.com','Quảng Bình'),
-(3,1,'Lê Hùng',1990-02-12,'342345456','0906456756','hung@gmail.com','Bình Dương'),
-(4,4,'Đoàn Dự',1978-02-12,'234345665','0935678767','dudoangmail.com','Đà Nẵng'),
-(5,5,'Tô Lịch',1995-02-12,'323454345','090542546','tolichgmail.com','Vinh');
+(1,2,'Nguyễn Hưng','1989-02-09','234345345','090543454','nguyenhung@gmail.com','Hai Phong'),
+(2,3,'Trần Anh','1991-12-17','223445398','095643457','anhtran@gmail.com','Quảng Bình'),
+(3,1,'Lê Tuấn','1990-02-12','342345456','0906456756','tuan@gmail.com','Hai Dương'),
+(4,4,'Đoàn Dự','1978-02-12','234345665','0935678767','dudoangmail.com','Đà Nẵng'),
+(5,5,'Văn Lâm','1995-02-12','323454345','090542546','vanlam@gmail.com','Hà Nội');
 
 insert into loai_dich_vu
 values
@@ -78,9 +78,9 @@ values
 
 insert into hop_dong
 values
-(1,2,1,1,12/12/2020,2/01/2021,3000000,5000000),
-(2,3,4,2,12/01/2021,20/01/2021,400000,7000000),
-(3,6,3,4,12/03/2020,22/03/2021,5000000,10000000);
+(1,2,1,1,'2020-12-12','2021-01-02',3000000,5000000),
+(2,3,4,2,'2021-01-12','2021-01-20',400000,7000000),
+(3,6,3,4,'2020-03-12','2021-03-22',5000000,10000000);
 
 insert into dich_vu_di_kem
 values
@@ -155,29 +155,16 @@ join hop_dong on dich_vu.id_dich_vu=hop_dong.id_dich_vu
 where year(ngay_lam_hop_dong)=2018 and year(ngay_lam_hop_dong) not in
  (select year(ngay_lam_hop_dong)	from hop_dong where (year(ngay_lam_hop_dong)=2019));
 
-
-
 -- task 8
--- Cách 1:
-select khach_hang.ho_ten
-from khach_hang
-group by khach_hang.ho_ten;
--- Cách 2:
+
 select distinct khach_hang.ho_ten
 from khach_hang
 group by khach_hang.ho_ten;
--- Cách 3:
-select khach_hang.ho_ten
-from khach_hang
-union
-select khach_hang.ho_ten
-from khach_hang;
 
 -- task 9
 
-select month(ngay_lam_hop_dong) as "Thang", 
-sum(dich_vu.chi_phi_thue +hop_dong_chi_tiet.so_luong*dich_vu_di_kem.gia) as "Tong tien",
-count(hop_dong.id_khach_hang) as "So khach thue dich vu"
+select month(ngay_lam_hop_dong) as "Thang", sum(dich_vu.chi_phi_thue +hop_dong_chi_tiet.so_luong*dich_vu_di_kem.gia) as 
+"Tong tien",count(hop_dong.id_khach_hang) as "So khach thue dich vu"
 from hop_dong
 join dich_vu on hop_dong.id_dich_vu=dich_vu.id_dich_vu
 join hop_dong_chi_tiet on hop_dong.id_hop_dong=hop_dong_chi_tiet.id_hop_dong

@@ -44,14 +44,12 @@ call Sp_1(2);
 -- task26
 
 delimiter //
-create procedure insert_product(in product_code varchar(45), in product_name varchar(45),
- in product_price float, in product_amount int,in product_description varchar(45),
- in product_status bit) 
+create procedure Sp_2(in id_hop_dong int, in id_nhan_vien int, in id_dich_vu int, in ngay_lam_hop_dong date,in ngay_ket_thuc date,in tien_dat_coc int, in tong_tien int) 
 begin
-insert into products(product_code,product_name,product_price , product_amount,
-product_description, product_status)
-value(product_code,product_name,product_price , product_amount,product_description,
- product_status);
+if(id_hop_dong not in (select id_hop_dong from hop_dong))
+then insert into hop_dong 
+values (id_hop_dong ,  id_nhan_vien ,  id_dich_vu ,  ngay_lam_hop_dong , ngay_ket_thuc , tien_dat_coc ,  tong_tien);
+end if;
 end//
 delimiter ;
 
@@ -66,45 +64,53 @@ select @a;
 
 -- task28 
 
-
+delimiter //
+create trigger tr_2
+after update on hop_dong
+for each row
+begin
+if datediff(new.ngay_ket_thuc,old.ngay_lam_hop_dong)<2 then
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "ngày kết thúc phải sau ngày làm hợp đồng ít nhất 2 ngày";
+end if;
+end //
+delimiter ;
+set @a =0;
+SET SQL_SAFE_UPDATES = 0;
+update hop_dong set ngay_ket_thuc = '2019-11-02' where ID_hop_dong = 1;
+drop trigger tr_2;
 
 -- task29
 
 delimiter //
-create function func_1() returns int
-reads sql data
+create function func_1 ()
+returns int
 deterministic
-begin 
-declare result int;
-	select count(id_dich_vu) from (
-		select hop_dong.id_dich_vu, case  when so_luong is null then sum(chi_phi_thue)
-		else  sum(chi_phi_thue + so_luong*gia) end as tong_tien
-from hop_dong 
-left join dich_vu on hop_dong.id_dich_vu =dich_vu.id_dich_vu
-left join hop_dong_chi_tiet on hop_dong.id_hop_dong = hop_dong_chi_tiet.id_hop_dong
-left join dich_vu_di_kem on dich_vu_di_kem.id_dich_vu_di_kem = 
-hop_dong_chi_tiet.id_dich_vu_di_kem
-group by id_dich_vu
-having tong_tien >20000)as table1 into result;
-return result;
-end //
+begin
+declare cnt int;
+create temporary table test(
+SELECT count(id_dich_vu) as so_dich_vu 
+from hop_dong group by id_dich_vu having sum(tong_tien)>2000000);
+set cnt = (select count(so_dich_vu) from test group by so_dich_vu);
+return cnt ;
+end// 
 delimiter ;
-select func_1();
+select func_1() as so_dich_vu;
+drop table test;
+
+-- b
 
 delimiter //
-create function func_2(param int) returns int
-reads sql data
+create function func_2 (id int)
+returns int
 deterministic
-begin 
-declare result int;
-select max(thoi_gian_dat_phong) from (
-select timestampdiff(day,ngay_lam_hop_dong,ngay_ket_thuc) as thoi_gian_dat_phong
-from hop_dong
-where id_khach_hang = param) as table1 into result;
-return result;
-end//
-delimiter ;
-select func_2(1);
+begin
+declare thoi_gian int;
+ set thoi_gian =( select datediff(ngay_ket_thuc,ngay_lam_hop_dong) from hop_dong where id_hop_dong = id);
+ return thoi_gian;
+end;
+// delimiter ;
+select func_2(1) as "số ngày";
+drop function `furoma`.`func_2`;
 
 -- task30 
 
