@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light  ml-5 mr-5 hov">
+  <a class="navbar-brand border-right border-dark pr-3" href="#" ><img src="data:image/png;base64,iVBORw0
+    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
+    P0idPHq/v/ujxNazXG128iqIoiqIoiqI
+    oiqIoiqIoiqIoiqIoiqIoiqIoiqIoiqIoiqIoiqIo
+    iqIoiqIoiqIofxb/D/K/6tEMJY27AAAAAElFTkSuQmCC" width="150px" height="50px" ></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown5" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://c.s-microsoft.com/en-us/CMSImages/Surface_Home_Pride_5_21_V1.jpg?version=476ede35-ac58-7627-54d1-fac8eecd64a4" class="d-block w-100" alt="..." width="1920" height="520">
+      </div>
+      <div class="carousel-item">
+        <img src="https://c.s-microsoft.com/en-us/CMSImages/Surface_Home_Pride_5_21_V2.jpg?version=f0d2786e-899d-ead0-5146-441993696974" class="d-block w-100" alt="..." width="1920" height="520">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+<div class="container ">
+  <nav class="nav nav-pills flex-column flex-sm-row m-5">
+    <a class="flex-sm-fill text-sm-center nav-link" href="#">
+      <img src="https://img.icons8.com/cotton/64/000000/laptop-analytic.png"/>
+      <p><b>Compare diveces</b></p>
+    </a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="#">
+      <img src="https://img.icons8.com/cotton/64/000000/laptop-alert.png"/>
+      <p ><b>Help me choose</b></p>
+    </a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="#">
+      <img src="https://img.icons8.com/cotton/64/000000/webkey.png"/>
+      <p ><b>Deals</b></p>
+    </a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="#">
+      <img src="https://img.icons8.com/ios-filled/64/000000/temperature-inside.png"/>
+      <p ><b>Surface at home</b></p>
+    </a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="#">
+      <img src="https://img.icons8.com/ios-glyphs/64/000000/downtown.png"/>
+      <p ><b>For Business</b></p>
+    </a>
+  </nav>
+</div>
+
+<div class="jumbotron jumbotron-fluid mr-5 ml-5">
+  <div class=" form-inline" >
+    <div class="mr-3 float-left">
+      <h1 class="display-4">Join us to see what's next for Windows</h1>
+      <p class="lead">Watch the livestream Thursday, June 24 at 11am Eastern Time | #Microsoftevent.</p>
+    </div>
+    <img class="float-right ml-5" src="https://c.s-microsoft.com/en-us/CMSImages/Surface_Home_Win_Offer_image.jpg?version=c97d08c1-8772-34d1-91ad-50bec0bd05b6" >
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row ">
+    <div class="card col-12 col-lg-6 col-sm-12 p-0" style="width: 18rem;">
+      <img class="card-img-top" src="https://c.s-microsoft.com/en-us/CMSImages/Surface_Home_Mosic_Fall_20_LaptopG_en-us_V1.jpg?version=2d178933-8079-1585-f38e-4215399226b2" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <div class="card col-12 col-sm-12 col-lg-6  p-0" style="width: 18rem;">
+      <img class="card-img-top" src="https://c.s-microsoft.com/en-us/CMSImages/Surface_Home_Mosic_Fall_20_Go_2_en-us_V1.jpg?version=45fd9288-3840-0d86-599c-77989e84ed43" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <div class="card col-12 col-lg-6 col-sm-12 p-0" style="width: 18rem;">
+      <img class="card-img-top" src="https://c.s-microsoft.com/en-us/CMSImages/Surface_Home_Hero_20_mosaic_Book3_SingleTile_V1.jpg?version=f7a8f28a-7d43-8b2a-35e2-b9fca7693a53" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <div class="card col-12 col-lg-6 col-sm-12 p-0" style="width: 18rem;">
+      <img class="card-img-top" src="https://c.s-microsoft.com/en-us/CMSImages/Surface_Home_Mosic_Fall_20_prox_en-us_V1.jpg?version=ff429f4d-7a62-77bc-52e7-8526e5c4245a" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <div class="card col-12 col-lg-6 col-sm-12 p-0" style="width: 18rem;">
+      <img class="card-img-top" src="https://c.s-microsoft.com/en-us/CMSImages/Surface_Home_Mosic_Fall_20_Duo_en-us_V1.png?version=affd3171-0839-a6bc-6e2e-5e26d0093b63" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <div class="card col-12 col-sm-12 col-lg-6  p-0" style="width: 18rem;">
+      <img class="card-img-top" src="https://c.s-microsoft.com/en-us/CMSImages/Surface_Home_Mosic_Fall_20_Studio_2_en-us_V1.jpg?version=b13db182-9214-d5a4-1a51-2ee8aedb503a" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <div class="card col-12 col-lg-6 col-sm-12 p-0" style="width: 18rem;">
+      <img class="card-img-top" src="https://c.s-microsoft.com/en-us/CMSImages/Surface_Home_Mosic_Spring_21_BS_color_V1.jpg?version=bfb57348-242c-e3f0-395f-ed40c3540161" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <div class="card col-12 col-lg-6 col-sm-12 p-0" style="width: 18rem;">
+      <img class="card-img-top" src="https://c.s-microsoft.com/en-us/CMSImages/Surface_Home_Mosic_Fall_20_Pro_7_en-us_V1.png?version=6316d187-4087-64fa-3387-9a297c177ae6" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container ">
+  <div class="embed-responsive embed-responsive-16by9 mt-5">
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Jd2GK0qDtRg"></iframe>
+  </div>
+</div>
+<footer class="text-center text-white" style="background-color: #f1f1f1;">
+  <!-- Grid container -->
+  <div class="container pt-4">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+      ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+      ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+      ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Instagram -->
+      <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+      ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+      ><i class="fab fa-linkedin"></i
+      ></a>
+      <!-- Github -->
+      <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+      ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>
