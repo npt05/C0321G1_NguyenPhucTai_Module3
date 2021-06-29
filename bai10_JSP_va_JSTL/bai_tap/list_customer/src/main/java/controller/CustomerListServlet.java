@@ -25,7 +25,7 @@ public class CustomerListServlet extends HttpServlet {
     }
     public static List<Customer> customerList(){
         List<Customer> customerList = new ArrayList<>();
-        customerList.add(new Customer("codeGym","01/01/2001","Đà Nẵng","img/codegym.png"));
+        customerList.add(new Customer("codeGym","01/01/2001","Hà Nội","img/codegym.png"));
         customerList.add(new Customer("codeGym1","02/01/2001","Hà Nội","img/2.png"));
         customerList.add(new Customer("codeGym2","03/01/2001","HCM","img/3.png"));
         customerList.add(new Customer("codeGym3","04/01/2001","Đà Nẵng","img/4.jpg"));
