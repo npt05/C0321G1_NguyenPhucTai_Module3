@@ -1,40 +1,19 @@
 package controller;
 
-import model.Product;
-import service.ProductService;
+import model.bean.Product;
+import model.service.ProductService;
+import model.service.ProductServiceImpl;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ControllerServlet", urlPatterns = "/products")
-public class ControllerServlet extends HttpServlet {
-    ProductService productService = new ProductService();
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if(action == null){
-            action="";
-        }
-        switch (action){
-            case "create":
-                createNewProduct(request,response);
-                break;
-            case "edit":
-                editProduct(request,response);
-                break;
-            case "delete":
-                deleteProduct(request,response);
-            default:
-                break;
-        }
-    }
-
-
+@WebServlet(name = "ProductServlet", urlPatterns = "/product")
+public class ProductServlet extends HttpServlet {
+    private final ProductService service = new ProductServiceImpl();
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if(action == null){
@@ -42,96 +21,119 @@ public class ControllerServlet extends HttpServlet {
         }
         switch (action){
             case "create":
-                newProductForm(request,response);
+                showFormCreate(request,response);
                 break;
             case "edit":
-                editProductFrom(request,response);
+                showEditForm(request,response);
                 break;
             case "delete":
-                deleteProductForm(request,response);
+                deleteProduct(request,response);
                 break;
             case "view":
-                viewProduct(request,response);
-                break;
-            case "name":
-                findByName(request,response);
+                showViewProduct(request,response);
                 break;
             default:
-                showALl(request,response);
+                showListProduct(request,response);
         }
-
     }
 
-
-
-    private void createNewProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
-        int price =Integer.parseInt(request.getParameter("price")) ;
-        String description = request.getParameter("description");
-        String producer = request.getParameter("producer");
-        List<Product> products = productService.showAll();
-        Product lastProduct = products.get(products.size()-1);
-        int id = lastProduct.getId()+1;
-        productService.create(new Product(id,name,price,description,producer));
-        request.setAttribute("message","Đã tạo mới thành công");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("products/create.jsp");
-        dispatcher.forward(request,response);
-    }
-
-    private void newProductForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("products/create.jsp");
-        dispatcher.forward(request,response);
-    }
-
-    private void showALl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> products = productService.showAll();
+    private void showListProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Product> products =service.findAll();
         request.setAttribute("products",products);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("products/showAll.jsp");
+        RequestDispatcher dispatcher =request.getRequestDispatcher("product/list.jsp");
         dispatcher.forward(request,response);
     }
-    private void editProductFrom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    private void showViewProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id =Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("product",service.findById(id));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product/view.jsp");
+        dispatcher.forward(request,response);
+    }
+
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id =  Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("product",service.findById(id));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product/edit.jsp");
+        dispatcher.forward(request,response);
+
+    }
+
+    private void showFormCreate(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect("/product/create.jsp");
+    }
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Product product = productService.findByID(id);
-        request.setAttribute("product",product);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("products/edit.jsp");
-        dispatcher.forward(request,response);
+        service.remove(id);
+        response.sendRedirect("/product");
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "create":
+                createProduct(request, response);
+                break;
+            case "edit":
+                editProduct(request, response);
+                break;
+            case "search":
+                searchProduct(request,response);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void searchProduct(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        Product product = service.findByName(name);
+        RequestDispatcher dispatcher;
+        if (product == null) {
+            dispatcher =request.getRequestDispatcher("error-404.jsp");
+        }else {
+            request.setAttribute("product",product);
+            dispatcher =request.getRequestDispatcher("product/view.jsp");
+        }
+        try{
+            dispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+    }
+
     private void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
-        int price =Integer.parseInt(request.getParameter("price")) ;
-        String description = request.getParameter("description");
+        double price = Double.parseDouble(request.getParameter("price"));
+        String describe = request.getParameter("describe");
         String producer = request.getParameter("producer");
-        int id = Integer.parseInt(request.getParameter("id"));
-        productService.update(id,new Product(id,name,price,description,producer));
-        showALl(request,response);
+        Product product = new Product(id,name,price,describe,producer);
+        service.update(id,product);
+        showListProduct(request,response);
     }
 
-    private void deleteProductForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Product product = productService.findByID(id);
-        request.setAttribute("product",product);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("products/delete.jsp");
-        dispatcher.forward(request,response);
-    }
-
-    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        productService.delete(id);
-        showALl(request,response);
-    }
-
-    private void viewProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Product product = productService.findByID(id);
-        request.setAttribute("product",product);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("products/view.jsp");
-        dispatcher.forward(request,response);
-    }
-    private void findByName(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+    private void createProduct(HttpServletRequest request, HttpServletResponse response) {
+        int id =Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
-        Product product = productService.findByName(name);
-        request.setAttribute("product",product);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("products/view.jsp");
-        dispatcher.forward(request,response);
+        double price = Double.parseDouble(request.getParameter("price"));
+        String describe = request.getParameter("describe");
+        String producer = request.getParameter("producer");
+        Product product = new Product(id,name,price,describe,producer);
+
+        service.save(product);
+        try {
+            showListProduct(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 }

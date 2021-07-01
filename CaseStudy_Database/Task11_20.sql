@@ -81,10 +81,10 @@ where id_loai_khach=2 and id_khach_hang in (select id_khach_hang from hop_dong w
  
  -- task18
  
- delete from khach_hang where id_khach_hang in (
-select table1.id_khach_hang from (
-select khach_hang.id_khach_hang from khach_hang 
-join hop_dong on khach_hang.id_khach_hang = hop_dong.id_hop_dong
+delete from khach_hang where ID_khach_hang in (
+select table1.ID_khach_hang from (
+select khach_hang.ID_khach_hang from khach_hang 
+join hop_dong on khach_hang.ID_khach_hang = hop_dong.ID_hop_dong
 where year(ngay_lam_hop_dong) <2016) as table1);
 
 -- tas19
