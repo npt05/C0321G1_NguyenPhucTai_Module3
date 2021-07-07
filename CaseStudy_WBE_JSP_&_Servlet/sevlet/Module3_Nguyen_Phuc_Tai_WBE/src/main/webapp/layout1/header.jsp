@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
             <div class="img-thumbnail">
-                <img src="asset/img/3.png" alt="" style="height: 50px; width: 300px">
+                <img src="asset/img/4.jpg" alt="" style="height: 168px; width: 300px">
             </div>
         </a>
         <span class="navbar-text" style="color: white">
@@ -40,7 +40,6 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
-    </div>
     </div>
 </nav>
 

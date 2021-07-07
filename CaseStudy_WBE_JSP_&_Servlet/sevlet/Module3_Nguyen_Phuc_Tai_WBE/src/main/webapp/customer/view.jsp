@@ -12,7 +12,7 @@
     <title>Welcome To Furama</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="asset/bootstrap4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/bootstrap4/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -25,61 +25,61 @@
 
         <form class="row g-3" action="/customer?action=edit" method="post">
             <input type="hidden" name="customerId" value="<c:out  value='${customer.id}'/>">
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <label class="form-label font-weight-bold">Customer Id:</label>
                 <p>
                     <c:out value='${customer.id}'/>
                 </p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <label class="form-label font-weight-bold">Customer Name:</label>
                 <p>
                     <c:out value='${customer.name}'/>
                 </p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <label class="form-label font-weight-bold">Customer Birthday:</label>
                 <p>
                     <c:out value='${customer.birthday}'/>
                 </p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <label class="form-label font-weight-bold">Customer IdCard:</label>
                 <p>
                     <c:out value='${customer.idCard}'/>
                 </p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <label class="form-label font-weight-bold">Customer Phone:</label>
                 <p>
                     <c:out value='${customer.phone}'/>
                 </p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <label class="form-label font-weight-bold">Customer Email:</label>
                 <p>
                     <c:out value='${customer.email}'/>
                 </p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <label class="form-label font-weight-bold">Customer Address:</label>
                 <p>
                     <c:out value='${customer.address}'/>
                 </p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <label class="form-label font-weight-bold">Customer Code:</label>
                 <p>
                     <c:out value='${customer.customerCode}'/>
                 </p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <label class="form-label font-weight-bold">Customer Type:</label>
                 <p>
                     <c:out value='${customer.customerType}'/>
                 </p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <label class="form-label font-weight-bold">Customer Gender:</label>
                 <p>
                     <c:out value='${customer.customerGender}'/>
@@ -90,9 +90,8 @@
 </div>
 
 <jsp:include page="/layout1/footer.jsp" />
-
-<script src="asset/jquery/jquery-3.5.1.min.js"></script>
-<script src="asset/jquery/popper.min.js"></script>
-<script src="asset/bootstrap4/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/asset/jquery/jquery-3.5.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/asset/jquery/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/asset/bootstrap4/js/bootstrap.js"></script>
 </body>
 </html>

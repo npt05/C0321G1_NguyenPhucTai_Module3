@@ -12,7 +12,7 @@
     <title>Welcome To Furama</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="asset/bootstrap4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/bootstrap4/css/bootstrap.min.css">
 </head>
 <body>
 <jsp:include page="/layout1/header.jsp" />
@@ -62,8 +62,8 @@
 
 <jsp:include page="/layout1/footer.jsp" />
 
-<script src="asset/jquery/jquery-3.5.1.min.js"></script>
-<script src="asset/jquery/popper.min.js"></script>
-<script src="asset/bootstrap4/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/asset/jquery/jquery-3.5.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/asset/jquery/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/asset/bootstrap4/js/bootstrap.js"></script>
 </body>
 </html>
